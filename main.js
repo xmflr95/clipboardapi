@@ -7,16 +7,17 @@ import ClipBoardAPI from "./ClipBoardAPI.js";
 // x.checkReadPermission();
 
 // ClipBoard
-const ipt = document.getElementById('ipt');
+// const ipt = document.getElementById('ipt');
 const btn = document.getElementById('btn');
 const txtArea = document.getElementById('txt-area');
 
 // ipt.addEventListener('change', iptChange);
 // txtArea.addEventListener('change', change);
-txtArea.addEventListener('keyup', change);
+// txtArea.addEventListener('keyup', change);
 
 txtArea.addEventListener('focus', ({ target }) => {
   const value = target.value;
+  ClipBoardAPI.write(value);
   txtArea.focus();
   // txtArea.ariaSelected();
   txtArea.setSelectionRange(0, value.length);

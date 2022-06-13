@@ -45,18 +45,21 @@ export default class ClipBoardAPI {
     //     'text/plain': Promise.resolve(new Blob([value], { type: 'text/plain' }))
     //   })
     // ];
-
-
-    let item;
-    if ('' !== value && '' !== undefined) {
-      item = writePlainText(value);
-    } else {
-      item = [
-        new ClipboardItem({
-          [blob.type]: blob
-        })
-      ];
+    if ('' === value || undefined === value || null === value) {
+      return;
     }
+    let item;
+    item = writePlainText(value);
+
+    // if ('' !== value && '' !== undefined) {
+    //   item = writePlainText(value);
+    // } else {
+    //   item = [
+    //     new ClipboardItem({
+    //       [blob.type]: blob
+    //     })
+    //   ];
+    // }
     // const imgURL = './setting.png';
     // const data = await fetch(imgURL);
     // console.log(data);
@@ -102,6 +105,10 @@ export default class ClipBoardAPI {
 }
 
 function writePlainText(value) {
+  if (undefined === value || null === value) {
+    value = '';
+  }
+
   const item = [
     new ClipboardItem({
       'text/plain': Promise.resolve(new Blob([value], { type: 'text/plain' }))
